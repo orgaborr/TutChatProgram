@@ -9,7 +9,7 @@ public class Server {
 	public static void start(int port) {
 		try {
 			socket = new DatagramSocket(port);
-			System.out.println("Serverstarted on port " + port);
+			System.out.println("Server started on port " + port);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
