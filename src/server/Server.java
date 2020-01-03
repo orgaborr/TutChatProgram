@@ -1,9 +1,19 @@
 package server;
 
+import java.net.DatagramSocket;
+
 public class Server {
 
+	private static DatagramSocket socket;
+	
 	public static void start(int port) {
-		
+		try {
+			socket = new DatagramSocket(port);
+			System.out.println("Serverstarted on port " + port);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static void broadcast() {
