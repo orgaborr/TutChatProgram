@@ -36,7 +36,13 @@ public class Server {
 					while(running) {
 						
 						byte[] data = new byte[1024];
-						DatagramPacket packet = new DatagramPacket(data, data.length); 
+						DatagramPacket packet = new DatagramPacket(data, data.length);
+						socket.receive(packet);
+						
+						String message = new String(data);
+						message = message.substring(0, message.indexOf("\\e"));
+						
+						//manage message
 						
 					}				
 				} catch(Exception e) {
