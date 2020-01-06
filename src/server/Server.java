@@ -3,11 +3,16 @@ package server;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Server {
 
 	private static DatagramSocket socket;
 	private static boolean running;
+	
+	private static int cliendID;
+	private static List<ClientInfo> clients = new ArrayList<>();
 	
 	public static void start(int port) {
 		try {
@@ -30,6 +35,8 @@ public class Server {
 			message += "\\e";
 			byte[] data = message.getBytes();
 			DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
+			socket.send(packet);
+			System.out.println("Sent message to " + address.getHostAddress() + ", " + port);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -51,8 +58,10 @@ public class Server {
 						message = message.substring(0, message.indexOf("\\e"));
 						
 						//manage message
-						broadcast(message);
-						
+						if(!isCommand()) {
+							broadcast(message);
+						}
+
 					}				
 				} catch(Exception e) {
 					e.printStackTrace();
@@ -60,6 +69,25 @@ public class Server {
 			}
 			
 		}; listenThread.start();
+	}
+	
+	/*
+	 * SERVER COMMAND LIST:
+	 * \con:[name] -> Connects Client To Server
+	 * \dis:[id] -> Disconnect Client From Server
+	 */
+	private static boolean isCommand(String message, DatagramPacket packet) {
+		
+		if(message.startsWith("\\con:")) {
+			//RUN CONNECTION CODE
+			String name = message.substring(message.indexOf(":" + 1));
+			
+			clients.add(new ClientInfo(name, id, address, port))
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public static void stop() {
