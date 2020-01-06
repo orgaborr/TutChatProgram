@@ -11,7 +11,7 @@ public class Server {
 	private static DatagramSocket socket;
 	private static boolean running;
 	
-	private static int cliendID;
+	private static int clientID;
 	private static List<ClientInfo> clients = new ArrayList<>();
 	
 	public static void start(int port) {
@@ -58,7 +58,7 @@ public class Server {
 						message = message.substring(0, message.indexOf("\\e"));
 						
 						//manage message
-						if(!isCommand()) {
+						if(!isCommand(message, packet)) {
 							broadcast(message);
 						}
 
@@ -81,8 +81,8 @@ public class Server {
 		if(message.startsWith("\\con:")) {
 			//RUN CONNECTION CODE
 			String name = message.substring(message.indexOf(":" + 1));
-			
-			clients.add(new ClientInfo(name, id, address, port))
+			clients.add(new ClientInfo(name, clientID++, packet.getAddress(), packet.getPort()));
+			broadcast("User " + name + " Connected!");
 			
 			return true;
 		}
