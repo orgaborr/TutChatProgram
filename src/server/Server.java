@@ -2,6 +2,7 @@ package server;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class Server {
 
@@ -20,12 +21,19 @@ public class Server {
 		}
 	}
 	
-	private static void broadcast() {
+	private static void broadcast(String message) {
 		
 	}
 	
-	private static void send() {
-		
+	private static void send(String message, InetAddress address, int port) {
+		try {			
+			message += "\\e";
+			byte[] data = message.getBytes();
+			DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static void listen() {
@@ -43,6 +51,7 @@ public class Server {
 						message = message.substring(0, message.indexOf("\\e"));
 						
 						//manage message
+						broadcast(message);
 						
 					}				
 				} catch(Exception e) {
