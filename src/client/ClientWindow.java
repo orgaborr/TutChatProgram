@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class ClientWindow {
 
@@ -38,8 +41,17 @@ public class ClientWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setTitle("Chat Program");
+		frame.setBounds(100, 100, 620, 455);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		
 	}
 
 }
