@@ -11,11 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ClientWindow {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField messageField;
+	private JTextArea textArea = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -51,7 +54,6 @@ public class ClientWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
@@ -61,14 +63,21 @@ public class ClientWindow {
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		textField = new JTextField();
-		panel.add(textField);
-		textField.setColumns(50);
+		messageField = new JTextField();
+		panel.add(messageField);
+		messageField.setColumns(50);
 		
 		JButton btnNewButton = new JButton("Send");
+		btnNewButton.addActionListener(e -> {
+			
+		});
 		panel.add(btnNewButton);
 		
 		frame.setLocationRelativeTo(null);	
+	}
+	
+	public static void printToConsole(String message) {
+		
 	}
 
 }
