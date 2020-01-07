@@ -1,5 +1,6 @@
 package client;
 
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
@@ -13,9 +14,25 @@ public class Client {
 		try {
 			this.address = InetAddress.getByName(address);
 			this.port = port;
+			
+			socket = new DatagramSocket();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public void send(String message, InetAddress address, int port) {
+		try {			
+			message += "\\e";
+			byte[] data = message.getBytes();
+			DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
+			socket.send(packet);
+			System.out.println("Sent message to " + address.getHostAddress() + ", " + port);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 }
