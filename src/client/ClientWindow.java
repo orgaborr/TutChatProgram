@@ -7,10 +7,15 @@ import javax.swing.UIManager;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import java.awt.FlowLayout;
+import javax.swing.JTextField;
 
 public class ClientWindow {
 
 	private JFrame frame;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -51,6 +56,17 @@ public class ClientWindow {
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.SOUTH);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		textField = new JTextField();
+		panel.add(textField);
+		textField.setColumns(50);
+		
+		JButton btnNewButton = new JButton("Send");
+		panel.add(btnNewButton);
 		
 	}
 
