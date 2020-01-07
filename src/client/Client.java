@@ -19,9 +19,11 @@ public class Client {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		send("\\con:Gabor");
 	}
-	
-	public void send(String message, InetAddress address, int port) {
+		
+	public void send(String message) {
 		try {			
 			message += "\\e";
 			byte[] data = message.getBytes();

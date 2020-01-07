@@ -17,6 +17,8 @@ public class ClientWindow {
 	private JFrame frame;
 	private JTextField messageField;
 	private static JTextArea textArea = new JTextArea();
+	
+	private Client client;
 
 	/**
 	 * Launch the application.
@@ -40,6 +42,7 @@ public class ClientWindow {
 	 */
 	public ClientWindow() {
 		initialize();
+		client = new Client("localhost", 52864);
 	}
 
 	/**
