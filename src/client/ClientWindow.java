@@ -24,9 +24,9 @@ public class ClientWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					ClientWindow window = new ClientWindow();
 					window.frame.setVisible(true);
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,7 +47,7 @@ public class ClientWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Chat Program");
-		frame.setBounds(100, 100, 620, 455);
+		frame.setBounds(100, 100, 550, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -68,6 +68,7 @@ public class ClientWindow {
 		JButton btnNewButton = new JButton("Send");
 		panel.add(btnNewButton);
 		
+		frame.setLocationRelativeTo(null);	
 	}
 
 }
