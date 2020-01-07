@@ -18,7 +18,7 @@ public class ClientWindow {
 
 	private JFrame frame;
 	private JTextField messageField;
-	private JTextArea textArea = new JTextArea();
+	private static JTextArea textArea = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -77,7 +77,7 @@ public class ClientWindow {
 	}
 	
 	public static void printToConsole(String message) {
-		
+		textArea.setText(textArea.getText() + message + "\n");
 	}
 
 }
