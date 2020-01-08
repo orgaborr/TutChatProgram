@@ -4,33 +4,36 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import server.ClientInfo;
-
 public class Client {
 	
 	private DatagramSocket socket;
 	private InetAddress address;
 	private int port;
 	
+	private String name;
 	private boolean running;
 
 	public Client(String name, String address, int port) {
 		try {
+			this.name = name;
 			this.address = InetAddress.getByName(address);
 			this.port = port;
-			
 			socket = new DatagramSocket();
+			
+			running = true;
+			listen();
+			send("\\con:" + name);
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
-		
-		running = true;
-		listen();
-		send("\\con:" + name);
+		}	
 	}
 		
 	public void send(String message) {
-		try {			
+		try {
+			if(!message.startsWith("\\")) {
+				message = name + ": " + message;
+			}
+			
 			message += "\\e";
 			byte[] data = message.getBytes();
 			DatagramPacket packet = new DatagramPacket(data, data.length, address, port);

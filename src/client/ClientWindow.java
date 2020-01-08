@@ -20,7 +20,6 @@ public class ClientWindow {
 	private static JTextArea textArea = new JTextArea();
 	
 	private Client client;
-	private String name;
 
 	/**
 	 * Launch the application.
@@ -45,7 +44,7 @@ public class ClientWindow {
 	public ClientWindow() {
 		initialize();
 		
-		name = JOptionPane.showInputDialog("Enter Name");
+		String name = JOptionPane.showInputDialog("Enter Name");
 		client = new Client(name, "localhost", 52864);
 	}
 
@@ -74,7 +73,7 @@ public class ClientWindow {
 		
 		JButton btnNewButton = new JButton("Send");
 		btnNewButton.addActionListener(e -> {
-			client.send(name + ": " + messageField.getText());
+			client.send(messageField.getText());
 			messageField.setText("");
 		});
 		panel.add(btnNewButton);
