@@ -24,6 +24,8 @@ public class Client {
 			e.printStackTrace();
 		}
 		
+		running = true;
+		listen();
 		send("\\con:" + name);
 	}
 		
@@ -54,9 +56,8 @@ public class Client {
 						String message = new String(data);
 						message = message.substring(0, message.indexOf("\\e"));
 						
-						//manage message
 						if(!isCommand(message, packet)) {
-							broadcast(message);
+							ClientWindow.printToConsole(message);
 						}
 
 					}				
