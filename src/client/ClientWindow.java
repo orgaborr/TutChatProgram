@@ -73,8 +73,10 @@ public class ClientWindow {
 		
 		JButton btnNewButton = new JButton("Send");
 		btnNewButton.addActionListener(e -> {
-			client.send(messageField.getText());
-			messageField.setText("");
+			if(!messageField.getText().equals("")) {
+				client.send(messageField.getText());
+				messageField.setText("");
+			}
 		});
 		panel.add(btnNewButton);
 		
