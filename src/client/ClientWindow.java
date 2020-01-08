@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -42,7 +43,9 @@ public class ClientWindow {
 	 */
 	public ClientWindow() {
 		initialize();
-		client = new Client("localhost", 52864);
+		
+		String name = JOptionPane.showInputDialog("Enter Name");
+		client = new Client(name, "localhost", 52864);
 	}
 
 	/**

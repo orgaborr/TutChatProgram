@@ -10,7 +10,7 @@ public class Client {
 	private InetAddress address;
 	private int port;
 
-	public Client(String address, int port) {
+	public Client(String name, String address, int port) {
 		try {
 			this.address = InetAddress.getByName(address);
 			this.port = port;
@@ -20,7 +20,7 @@ public class Client {
 			e.printStackTrace();
 		}
 		
-		send("\\con:Gabor");
+		send("\\con:" + name);
 	}
 		
 	public void send(String message) {
